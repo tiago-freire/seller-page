@@ -39,6 +39,7 @@ const SellerInfo: React.FC = () => {
     QuerySellerArgs
   >(GET_SELLER, {
     variables: { id },
+    ssr: true,
   })
 
   useEffect(() => {
