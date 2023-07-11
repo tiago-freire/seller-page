@@ -1,0 +1,12 @@
+query getSeller($id: ID!) {
+  seller(id: $id) @context(provider: "vtex.sellers-graphql") {
+    name
+    logo
+    isActive
+    description
+    email
+    exchangeReturnPolicy
+    deliveryPolicy
+    securityPrivacyPolicy
+  }
+}

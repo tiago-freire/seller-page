@@ -1,0 +1,18 @@
+.infoContainer {
+  --logo-width: 150px;
+}
+
+.logoContainer {
+  border-radius: 50%;
+  width: var(--logo-width);
+  min-width: var(--logo-width);
+  height: var(--logo-width);
+}
+
+.logo {
+  object-fit: cover;
+}
+
+.policyButton {
+  border-width: 1px;
+}

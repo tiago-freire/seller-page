@@ -1,0 +1,25 @@
+{
+  "store.seller": {
+    "allowed": "*"
+  },
+  "seller-page-link": {
+    "component": "SellerPageLink",
+    "composition": "children",
+    "allowed": "*"
+  },
+  "seller-info": {
+    "component": "SellerInfo",
+    "allowed": "*"
+  },
+  "seller-products": {
+    "component": "SellerProducts",
+    "allowed": [
+      "search-result-layout.desktop",
+      "search-result-layout.mobile",
+      "search-not-found-layout"
+    ]
+  },
+  "seller-product-price": {
+    "component": "SellerProductPrice"
+  }
+}

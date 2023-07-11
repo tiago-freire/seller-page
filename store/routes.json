@@ -1,0 +1,5 @@
+{
+  "store.seller": {
+    "path": "/seller/:slug"
+  }
+}

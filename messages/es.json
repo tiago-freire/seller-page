@@ -1,4 +1,8 @@
 {
-  "admin/test": "teste",
-  "store/test": "teste"
+  "store/seller-page-fallbackDescriptionPrefix": "Página del vendedor",
+  "store/seller-page-deliveryPolicyTitle": "Política de Entrega",
+  "store/seller-page-exchangeReturnPolicyTitle": "Cambios y Devoluciones",
+  "store/seller-page-securityPrivacyPolicyTitle": "Privacidad y Seguridad",
+  "store/seller-page-listPricePrefix": "De",
+  "store/seller-page-sellingPricePrefix": "Por"
 }
