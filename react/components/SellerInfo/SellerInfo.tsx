@@ -2,6 +2,7 @@ import React from 'react'
 import { defineMessages, useIntl } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 
+import { convertBreakToBrHTML } from '../../helpers'
 import Skeleton from '../Skeleton'
 import DefaultLogo from './DefaultLogo'
 import PoliciesButtons from './PoliciesButtons'
@@ -78,7 +79,9 @@ const SellerInfo: React.FC = () => {
         <div className={titleAndDescriptionClasses}>
           <h3 className={titleClasses}>{name}</h3>
           <p className="c-muted-1">
-            {hasDescription ? description : fallbackDescription}
+            {hasDescription
+              ? convertBreakToBrHTML(description, 'description')
+              : fallbackDescription}
           </p>
           <PoliciesButtons {...policiesButtonsProps} />
         </div>

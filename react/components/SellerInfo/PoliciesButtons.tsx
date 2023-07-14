@@ -1,6 +1,8 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import { defineMessages, useIntl } from 'react-intl'
 import { Modal } from 'vtex.styleguide'
+
+import { convertBreakToBrHTML } from '../../helpers'
 
 const messages = defineMessages({
   deliveryPolicyTitle: { id: 'store/seller-page-deliveryPolicyTitle' },
@@ -11,14 +13,6 @@ const messages = defineMessages({
     id: 'store/seller-page-securityPrivacyPolicyTitle',
   },
 })
-
-const convertBreakToBrHTML = (text: string, keyPrefix: string) =>
-  text.split(/\n/g).map((paragraph, index) => (
-    <Fragment key={`${keyPrefix}-${index}`}>
-      {paragraph}
-      <br />
-    </Fragment>
-  ))
 
 interface Props {
   handles: Record<string, string>
