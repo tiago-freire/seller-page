@@ -1,25 +1,18 @@
-import React, { useEffect } from 'react'
-import { useLazyQuery } from 'react-apollo'
+import React from 'react'
 import { defineMessages, useIntl } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
-import { useRuntime } from 'vtex.render-runtime'
-import type { QuerySellerArgs, Seller } from 'vtex.sellers-graphql'
 
-import GET_SELLER from '../../graphql/getSeller.gql'
 import Skeleton from '../Skeleton'
 import DefaultLogo from './DefaultLogo'
 import PoliciesButtons from './PoliciesButtons'
 import styles from './styles.css'
+import useSellerFromSlug from './useSellerFromSlug'
 
 const messages = defineMessages({
   fallbackDescriptionPrefix: {
     id: 'store/seller-page-fallbackDescriptionPrefix',
   },
 })
-
-interface SellerQuery {
-  seller: Seller
-}
 
 const SellerInfoSkeleton: React.FC = () => <Skeleton height="30vh" />
 
@@ -28,40 +21,26 @@ const SellerInfo: React.FC = () => {
 
   const handles = useCssHandles(['title', ...Object.keys(styles)])
 
-  const {
-    route: {
-      params: { slug: id },
-    },
-  } = useRuntime()
+  const { data, loading } = useSellerFromSlug()
 
-  const [getSeller, { data, loading, called }] = useLazyQuery<
-    SellerQuery,
-    QuerySellerArgs
-  >(GET_SELLER, {
-    variables: { id },
-    ssr: true,
-  })
-
-  useEffect(() => {
-    getSeller()
-  }, [getSeller])
-
-  if (!called || (called && loading)) {
+  if (loading) {
     return <SellerInfoSkeleton />
   }
 
-  if (!data) {
+  if (!data?.seller) {
     return null
   }
 
   const {
-    name,
-    logo,
-    description,
-    deliveryPolicy,
-    exchangeReturnPolicy,
-    securityPrivacyPolicy,
-  } = data?.seller
+    seller: {
+      name,
+      logo,
+      description,
+      deliveryPolicy,
+      exchangeReturnPolicy,
+      securityPrivacyPolicy,
+    },
+  } = data
 
   const hasDescription = !!description?.trim()
   const fallbackDescription = (

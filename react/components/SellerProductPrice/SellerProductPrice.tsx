@@ -27,13 +27,13 @@ const SellerProductPrice: React.FC = () => {
 
   const {
     route: {
-      params: { slug: id },
+      params: { slug },
     },
   } = useRuntime()
 
   const productContext = useProduct()
   const currentSeller = productContext?.selectedItem?.sellers?.find(
-    (seller) => seller.sellerId === id
+    (seller) => seller.sellerId === slug
   )
 
   const unit = productContext?.selectedItem?.measurementUnit

@@ -1,0 +1,22 @@
+{
+  "memory": 1024,
+  "ttl": 300,
+  "timeout": 60,
+  "minReplicas": 8,
+  "maxReplicas": 80,
+  "workers": 1,
+  "routes": {
+    "getSeller": {
+      "path": "/_v/seller/:sellerId",
+      "public": true,
+      "access": "authorized",
+      "policies": [
+        {
+          "effect": "allow",
+          "actions": ["options", "get", "post", "delete"],
+          "principals": ["vrn:apps:*:*:*:app/ssesandbox04.seller-page@*"]
+        }
+      ]
+    }
+  }
+}

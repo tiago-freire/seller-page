@@ -5382,10 +5382,6 @@ verror@1.10.0:
   version "0.5.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.seller-selector@0.5.0/public/@types/vtex.seller-selector#edcb49cc9b5bccc75fc84508882ba2025b7c8f13"
 
-"vtex.sellers-graphql@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.sellers-graphql@9.15.0/public/@types/vtex.sellers-graphql":
-  version "9.15.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.sellers-graphql@9.15.0/public/@types/vtex.sellers-graphql#2b0b811a0b297dcc909b704d89a3a5977b8280c7"
-
 "vtex.store@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store@2.131.1/public/@types/vtex.store":
   version "2.131.1"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store@2.131.1/public/@types/vtex.store#827708eeb47e82494554d5748a48bed3bea01184"
