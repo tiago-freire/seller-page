@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import { defineMessages, useIntl } from 'react-intl'
 import { Modal } from 'vtex.styleguide'
 
@@ -11,6 +11,14 @@ const messages = defineMessages({
     id: 'store/seller-page-securityPrivacyPolicyTitle',
   },
 })
+
+const convertBreakToBrHTML = (text: string, keyPrefix: string) =>
+  text.split(/\n/g).map((paragraph, index) => (
+    <Fragment key={`${keyPrefix}-${index}`}>
+      {paragraph}
+      <br />
+    </Fragment>
+  ))
 
 interface Props {
   handles: Record<string, string>
@@ -59,7 +67,7 @@ const PoliciesButtons: React.FC<Props> = ({
             onClose={() => setOpenDeliveryPolicy(false)}
             title={intl.formatMessage(messages.deliveryPolicyTitle)}
           >
-            <p>{deliveryPolicy}</p>
+            <p>{convertBreakToBrHTML(deliveryPolicy, 'deliveryPolicy')}</p>
           </Modal>
         </>
       )}
@@ -78,7 +86,12 @@ const PoliciesButtons: React.FC<Props> = ({
             onClose={() => setOpenExchangeReturnPolicy(false)}
             title={intl.formatMessage(messages.exchangeReturnPolicyTitle)}
           >
-            <p>{exchangeReturnPolicy}</p>
+            <p>
+              {convertBreakToBrHTML(
+                exchangeReturnPolicy,
+                'exchangeReturnPolicy'
+              )}
+            </p>
           </Modal>
         </>
       )}
@@ -97,7 +110,12 @@ const PoliciesButtons: React.FC<Props> = ({
             onClose={() => setOpenSecurityPrivacyPolicy(false)}
             title={intl.formatMessage(messages.securityPrivacyPolicyTitle)}
           >
-            <p>{securityPrivacyPolicy}</p>
+            <p>
+              {convertBreakToBrHTML(
+                securityPrivacyPolicy,
+                'securityPrivacyPolicy'
+              )}
+            </p>
           </Modal>
         </>
       )}

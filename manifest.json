@@ -12,6 +12,7 @@
     "store": "0.x"
   },
   "dependencies": {
+    "vtex.add-to-cart-button": "0.x",
     "vtex.store": "2.x",
     "vtex.css-handles": "0.x",
     "vtex.flex-layout": "0.x",

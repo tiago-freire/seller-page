@@ -69,6 +69,12 @@
   "gallery#seller-page": {
     "blocks": ["product-summary.shelf#seller-page"]
   },
+  "add-to-cart-button#seller-view-product-button": {
+    "props": {
+      "onClickBehavior": "go-to-product-page",
+      "text": "VIEW PRODUCT"
+    }
+  },
   "product-summary.shelf#seller-page": {
     "children": [
       "product-summary-image",
@@ -76,7 +82,7 @@
       "product-summary-attachment-list",
       "product-summary-space",
       "seller-product-price",
-      "product-summary-buy-button"
+      "add-to-cart-button#seller-view-product-button"
     ]
   }
 }
