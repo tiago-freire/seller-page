@@ -2,6 +2,9 @@
   "store.seller": {
     "allowed": "*"
   },
+  "seller-pdp-text": {
+    "component": "SellerPdpText"
+  },
   "seller-page-link": {
     "component": "SellerPageLink",
     "composition": "children",

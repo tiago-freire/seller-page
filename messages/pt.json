@@ -1,4 +1,5 @@
 {
+  "store/seller-page-sellerPdpText": "Vendido e entregue por: {sellerName}",
   "store/seller-page-fallbackDescription": "Página do vendedor {sellerName}",
   "store/seller-page-deliveryPolicyTitle": "Política de Entregas",
   "store/seller-page-exchangeReturnPolicyTitle": "Trocas e Devoluções",
