@@ -1,5 +1,5 @@
 {
-  "store/seller-page-sellerPdpText": "Sold and shipped by: {sellerName}",
+  "store/seller-page-sellerPdpText": "Supplied and delivered by: {sellerName}",
   "store/seller-page-fallbackDescription": "Page of seller {sellerName}",
   "store/seller-page-deliveryPolicyTitle": "Shipping Policy",
   "store/seller-page-exchangeReturnPolicyTitle": "Exchanges and Returns",
