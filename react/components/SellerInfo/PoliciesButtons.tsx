@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import { defineMessages, useIntl } from 'react-intl'
 import { Modal } from 'vtex.styleguide'
 
@@ -22,7 +22,7 @@ interface Props {
   securityPrivacyPolicy?: string | null
 }
 
-const PoliciesButtons: React.FC<Props> = ({
+const PoliciesButtons: FC<Props> = ({
   handles,
   className,
   deliveryPolicy,

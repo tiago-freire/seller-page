@@ -1,19 +1,30 @@
-import React, { PropsWithChildren } from 'react'
+import React, { FC, PropsWithChildren } from 'react'
 import { useCssHandles } from 'vtex.css-handles'
+import { useProduct } from 'vtex.product-context'
 import { Link } from 'vtex.render-runtime'
 import { CurrentSellerContext } from 'vtex.seller-selector'
 
-function SellerPageLink({ children }: PropsWithChildren<never>) {
+const SellerPageLink: FC<PropsWithChildren<never>> = ({ children }) => {
+  const productContext = useProduct()
+
   const handles = useCssHandles(['sellerLink'])
   const { useCurrentSeller } = CurrentSellerContext
-  const { currentSeller } = useCurrentSeller()
-  const sellerId = currentSeller?.sellerId
+  let { currentSeller } = useCurrentSeller()
 
-  return sellerId ? (
+  if (!currentSeller) {
+    currentSeller =
+      productContext?.selectedItem?.sellers?.find(
+        (seller) => seller.sellerDefault
+      ) ?? null
+  }
+
+  const slug = currentSeller?.sellerId
+
+  return slug ? (
     <Link
-      className={handles.sellerLink}
+      className={`c-link ${handles.sellerLink}`}
       target="_blank"
-      params={{ slug: sellerId }}
+      params={{ slug }}
       title={currentSeller?.sellerName}
       page="store.seller"
     >

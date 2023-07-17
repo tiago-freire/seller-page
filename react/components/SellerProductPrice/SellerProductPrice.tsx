@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { defineMessages, useIntl } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 import { useFormattedPrice } from 'vtex.formatted-price'
@@ -16,7 +16,7 @@ const messages = defineMessages({
   },
 })
 
-const SellerProductPrice: React.FC = () => {
+const SellerProductPrice: FC = () => {
   const intl = useIntl()
 
   const handles = useCssHandles([

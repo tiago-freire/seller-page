@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
 
+interface Seller {
+  id: string
+  name: string
+  logo: string
+  description: string
+  deliveryPolicy: string
+  exchangeReturnPolicy: string
+  securityPrivacyPolicy: string
+}
+
 interface ApiResponse {
-  seller?: {
-    id: string
-    name: string
-    logo: string
-    description: string
-    deliveryPolicy: string
-    exchangeReturnPolicy: string
-    securityPrivacyPolicy: string
-  }
+  seller?: Seller
   error?: string
 }
 
@@ -22,19 +24,22 @@ const useSellerFromSlug = () => {
     },
   } = useRuntime()
 
-  const [data, setData] = useState<ApiResponse>()
+  const [seller, setSeller] = useState<Seller>()
+  const [error, setError] = useState<string>()
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetch(`/_v/seller/${slug}?workspace=${workspace}`)
       .then((response) => response.json())
-      .then((json) => {
-        setData(json)
+      .then((json: ApiResponse) => {
+        setError(json?.error)
+        setSeller(json?.seller)
       })
+      .catch((e) => setError(e.message))
       .finally(() => setLoading(false))
   }, [slug, workspace])
 
-  return { data, loading }
+  return { seller, error, loading }
 }
 
 export default useSellerFromSlug

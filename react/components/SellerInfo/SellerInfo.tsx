@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { defineMessages, useIntl } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -10,45 +10,32 @@ import styles from './styles.css'
 import useSellerFromSlug from './useSellerFromSlug'
 
 const messages = defineMessages({
-  fallbackDescriptionPrefix: {
-    id: 'store/seller-page-fallbackDescriptionPrefix',
+  fallbackDescription: {
+    id: 'store/seller-page-fallbackDescription',
   },
 })
 
-const SellerInfoSkeleton: React.FC = () => <Skeleton height="30vh" />
+const SellerInfoSkeleton: FC = () => <Skeleton height="30vh" />
 
 const SellerInfo: React.FC = () => {
   const intl = useIntl()
 
   const handles = useCssHandles(['title', ...Object.keys(styles)])
 
-  const { data, loading } = useSellerFromSlug()
+  const { seller, error, loading } = useSellerFromSlug()
 
   if (loading) {
     return <SellerInfoSkeleton />
   }
 
-  if (!data?.seller) {
-    return null
-  }
-
   const {
-    seller: {
-      name,
-      logo,
-      description,
-      deliveryPolicy,
-      exchangeReturnPolicy,
-      securityPrivacyPolicy,
-    },
-  } = data
-
-  const hasDescription = !!description?.trim()
-  const fallbackDescription = (
-    <>
-      {intl.formatMessage(messages.fallbackDescriptionPrefix)} <i>{name}</i>.
-    </>
-  )
+    name,
+    logo,
+    description,
+    deliveryPolicy,
+    exchangeReturnPolicy,
+    securityPrivacyPolicy,
+  } = seller ?? {}
 
   const logoContainerClasses = `flex items-center justify-center overflow-hidden
     bg-white mb6 mb0-l mr6-l ${handles.logoContainer}`
@@ -69,22 +56,28 @@ const SellerInfo: React.FC = () => {
   return (
     <section className={`bg-muted-5 pv6 ph8 br3 ${handles.infoContainer}`}>
       <div className="flex flex-column items-center items-start-l flex-row-l">
-        <div className={logoContainerClasses}>
-          {logo ? (
-            <img src={logo} alt={name} className={logoClasses} />
-          ) : (
-            <DefaultLogo alt={name} className={logoClasses} />
-          )}
-        </div>
-        <div className={titleAndDescriptionClasses}>
-          <h3 className={titleClasses}>{name}</h3>
-          <p className="c-muted-1">
-            {hasDescription
-              ? convertBreakToBrHTML(description, 'description')
-              : fallbackDescription}
-          </p>
-          <PoliciesButtons {...policiesButtonsProps} />
-        </div>
+        {error ?? (
+          <>
+            <div className={logoContainerClasses}>
+              {logo ? (
+                <img src={logo} alt={name} className={logoClasses} />
+              ) : (
+                <DefaultLogo alt={name} className={logoClasses} />
+              )}
+            </div>
+            <div className={titleAndDescriptionClasses}>
+              <h3 className={titleClasses}>{name}</h3>
+              <p className="c-muted-1">
+                {description?.trim()
+                  ? convertBreakToBrHTML(description, 'description')
+                  : intl.formatMessage(messages.fallbackDescription, {
+                      sellerName: name,
+                    })}
+              </p>
+              <PoliciesButtons {...policiesButtonsProps} />
+            </div>
+          </>
+        )}
       </div>
     </section>
   )

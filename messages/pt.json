@@ -1,5 +1,5 @@
 {
-  "store/seller-page-fallbackDescriptionPrefix": "Página do vendedor",
+  "store/seller-page-fallbackDescription": "Página do vendedor {sellerName}",
   "store/seller-page-deliveryPolicyTitle": "Política de Entregas",
   "store/seller-page-exchangeReturnPolicyTitle": "Trocas e Devoluções",
   "store/seller-page-securityPrivacyPolicyTitle": "Privacidade e Segurança",

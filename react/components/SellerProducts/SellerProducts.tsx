@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { ExtensionPoint, useRuntime } from 'vtex.render-runtime'
 import ProductQuery from 'vtex.search-result/SearchResultLayoutCustomQuery'
 
-const SellerProducts: React.FC = () => {
+const SellerProducts: FC = () => {
   const {
     query,
     route: {
