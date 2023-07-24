@@ -1,27 +1,17 @@
 import React, { FC } from 'react'
-import { defineMessages, useIntl } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 
-import { convertBreakToBrHTML } from '../../helpers'
 import Skeleton from '../Skeleton'
 import DefaultLogo from './DefaultLogo'
+import Description from './Description'
 import PoliciesButtons from './PoliciesButtons'
 import styles from './styles.css'
 import useSellerFromSlug from './useSellerFromSlug'
 
-const messages = defineMessages({
-  fallbackDescription: {
-    id: 'store/seller-page-fallbackDescription',
-  },
-})
-
 const SellerInfoSkeleton: FC = () => <Skeleton height="30vh" />
 
-const SellerInfo: React.FC = () => {
-  const intl = useIntl()
-
+const SellerInfo: FC = () => {
   const handles = useCssHandles(['title', ...Object.keys(styles)])
-
   const { seller, error, loading } = useSellerFromSlug()
 
   if (loading) {
@@ -67,13 +57,7 @@ const SellerInfo: React.FC = () => {
             </div>
             <div className={titleAndDescriptionClasses}>
               <h3 className={titleClasses}>{name}</h3>
-              <p className="c-muted-1">
-                {description?.trim()
-                  ? convertBreakToBrHTML(description, 'description')
-                  : intl.formatMessage(messages.fallbackDescription, {
-                      sellerName: name,
-                    })}
-              </p>
+              <Description description={description} sellerName={name} />
               <PoliciesButtons {...policiesButtonsProps} />
             </div>
           </>

@@ -5648,6 +5648,10 @@ splunk-events@^1.3.1:
   resolved "https://registry.yarnpkg.com/splunk-events/-/splunk-events-1.7.0.tgz#4400c2b224387e598806c8fb7e6e687cf9143fe4"
   integrity sha512-OdqBiyE45GIYWWzeNZVcZHqvagRwBINy26+u2Iu2nWQYzPtD7HnL6hSgWzFXNBzRxdQuUQWeAKE58I6pvJ9xjA==
 
+"ssesandbox04.seller-page@https://dev--vtextitantools.myvtex.com/_v/private/typings/linked/v1/ssesandbox04.seller-page@0.0.9+build1690222848/public/@types/ssesandbox04.seller-page":
+  version "0.0.0"
+  resolved "https://dev--vtextitantools.myvtex.com/_v/private/typings/linked/v1/ssesandbox04.seller-page@0.0.9+build1690222848/public/@types/ssesandbox04.seller-page#f1aeeeda55eae76277938b30aee02cc68843b6c2"
+
 sshpk@^1.7.0:
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.17.0.tgz#578082d92d4fe612b13007496e543fa0fbcbe4c5"
@@ -6156,6 +6160,10 @@ verror@1.10.0:
     assert-plus "^1.0.0"
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
+
+"vtex.add-to-cart-button@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.add-to-cart-button@0.30.2/public/@types/vtex.add-to-cart-button":
+  version "0.30.2"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.add-to-cart-button@0.30.2/public/@types/vtex.add-to-cart-button#460e38a0fca759d2eba382ebe6cd92d6c645b0b6"
 
 "vtex.css-handles@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles":
   version "0.4.4"

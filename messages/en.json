@@ -1,6 +1,8 @@
 {
   "store/seller-page-sellerPdpText": "Sold and delivered by: {sellerName}",
   "store/seller-page-fallbackDescription": "Page of seller {sellerName}",
+  "store/seller-page-moreDescription": "more",
+  "store/seller-page-lessDescription": "less",
   "store/seller-page-deliveryPolicyTitle": "Shipping Policy",
   "store/seller-page-exchangeReturnPolicyTitle": "Exchanges and Returns",
   "store/seller-page-securityPrivacyPolicyTitle": "Privacy and Security",

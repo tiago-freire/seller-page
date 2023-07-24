@@ -1,8 +1,7 @@
 import React, { FC, useState } from 'react'
 import { defineMessages, useIntl } from 'react-intl'
+import ReactMarkdown from 'react-markdown'
 import { Modal } from 'vtex.styleguide'
-
-import { convertBreakToBrHTML } from '../../helpers'
 
 const messages = defineMessages({
   deliveryPolicyTitle: { id: 'store/seller-page-deliveryPolicyTitle' },
@@ -17,9 +16,9 @@ const messages = defineMessages({
 interface Props {
   handles: Record<string, string>
   className?: string
-  deliveryPolicy?: string | null
-  exchangeReturnPolicy?: string | null
-  securityPrivacyPolicy?: string | null
+  deliveryPolicy?: string
+  exchangeReturnPolicy?: string
+  securityPrivacyPolicy?: string
 }
 
 const PoliciesButtons: FC<Props> = ({
@@ -32,14 +31,8 @@ const PoliciesButtons: FC<Props> = ({
   const intl = useIntl()
 
   const [openDeliveryPolicy, setOpenDeliveryPolicy] = useState(false)
-
-  const [openExchangeReturnPolicy, setOpenExchangeReturnPolicy] = useState(
-    false
-  )
-
-  const [openSecurityPrivacyPolicy, setOpenSecurityPrivacyPolicy] = useState(
-    false
-  )
+  const [openExchangePolicy, setOpenExchangePolicy] = useState(false)
+  const [openSecurityPolicy, setOpenSecurityPolicy] = useState(false)
 
   const buttonClasses = `b--black-20 b--solid bg-white hover-bg-muted-4
     br4 c-on-base mt4 ml4-m mt0-m pointer t-heading-6 ph4 pv2
@@ -61,7 +54,7 @@ const PoliciesButtons: FC<Props> = ({
             onClose={() => setOpenDeliveryPolicy(false)}
             title={intl.formatMessage(messages.deliveryPolicyTitle)}
           >
-            <p>{convertBreakToBrHTML(deliveryPolicy, 'deliveryPolicy')}</p>
+            <ReactMarkdown>{deliveryPolicy}</ReactMarkdown>
           </Modal>
         </>
       )}
@@ -70,22 +63,17 @@ const PoliciesButtons: FC<Props> = ({
         <>
           <button
             className={buttonClasses}
-            onClick={() => setOpenExchangeReturnPolicy(true)}
+            onClick={() => setOpenExchangePolicy(true)}
           >
             {intl.formatMessage(messages.exchangeReturnPolicyTitle)}
           </button>
           <Modal
             centered
-            isOpen={openExchangeReturnPolicy}
-            onClose={() => setOpenExchangeReturnPolicy(false)}
+            isOpen={openExchangePolicy}
+            onClose={() => setOpenExchangePolicy(false)}
             title={intl.formatMessage(messages.exchangeReturnPolicyTitle)}
           >
-            <p>
-              {convertBreakToBrHTML(
-                exchangeReturnPolicy,
-                'exchangeReturnPolicy'
-              )}
-            </p>
+            <ReactMarkdown>{exchangeReturnPolicy}</ReactMarkdown>
           </Modal>
         </>
       )}
@@ -94,22 +82,17 @@ const PoliciesButtons: FC<Props> = ({
         <>
           <button
             className={buttonClasses}
-            onClick={() => setOpenSecurityPrivacyPolicy(true)}
+            onClick={() => setOpenSecurityPolicy(true)}
           >
             {intl.formatMessage(messages.securityPrivacyPolicyTitle)}
           </button>
           <Modal
             centered
-            isOpen={openSecurityPrivacyPolicy}
-            onClose={() => setOpenSecurityPrivacyPolicy(false)}
+            isOpen={openSecurityPolicy}
+            onClose={() => setOpenSecurityPolicy(false)}
             title={intl.formatMessage(messages.securityPrivacyPolicyTitle)}
           >
-            <p>
-              {convertBreakToBrHTML(
-                securityPrivacyPolicy,
-                'securityPrivacyPolicy'
-              )}
-            </p>
+            <ReactMarkdown>{securityPrivacyPolicy}</ReactMarkdown>
           </Modal>
         </>
       )}

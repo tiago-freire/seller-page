@@ -59,7 +59,6 @@
   },
   "flex-layout.col#search-seller-page": {
     "props": {
-      "width": "grow",
       "rowGap": 6
     },
     "children": ["search-content#seller-page", "search-fetch-more"]
