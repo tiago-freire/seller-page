@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
 
 interface Seller {
@@ -28,16 +28,58 @@ const useSellerFromSlug = () => {
   const [error, setError] = useState<string>()
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    fetch(`/_v/seller/${slug}?workspace=${workspace}`)
-      .then((response) => response.json())
-      .then((json: ApiResponse) => {
+  const fetchSeller = useCallback(async () => {
+    const maxRetries = 3
+    const retryInterval = 300
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `/_v/seller/${slug}?workspace=${workspace}`
+        )
+
+        if (!response.ok) {
+          const json = await response.json()
+
+          throw new Error(json?.message || response.status.toString())
+        }
+
+        const json: ApiResponse = await response.json()
+
         setError(json?.error)
         setSeller(json?.seller)
-      })
-      .catch((e) => setError(e.message))
-      .finally(() => setLoading(false))
+        setLoading(false)
+
+        return
+      } catch (e) {
+        throw e
+      }
+    }
+
+    let retryCount = 0
+
+    while (retryCount < maxRetries) {
+      try {
+        // eslint-disable-next-line no-await-in-loop
+        await fetchData()
+
+        return
+      } catch (e) {
+        retryCount++
+        if (retryCount < maxRetries) {
+          // eslint-disable-next-line no-await-in-loop
+          await new Promise((resolve) => setTimeout(resolve, retryInterval))
+        } else {
+          setError(e.message)
+          setLoading(false)
+        }
+      }
+    }
   }, [slug, workspace])
+
+  useEffect(() => {
+    fetchSeller()
+  }, [fetchSeller])
 
   return { seller, error, loading }
 }
