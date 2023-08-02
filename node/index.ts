@@ -4,9 +4,10 @@ import { LRUCache, Service, method } from '@vtex/api'
 import { Clients } from './clients'
 import getSeller from './middlewares/getSeller'
 
-const TIMEOUT_MS = 3 * 1000
+const TIMEOUT_MS = 4 * 1000
 const CONCURRENCY = 10
-const memoryCache = new LRUCache<string, never>({ max: 5000 })
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const memoryCache = new LRUCache<string, any>({ max: 5000 })
 
 const clients: ClientsConfig<Clients> = {
   implementation: Clients,
@@ -14,12 +15,10 @@ const clients: ClientsConfig<Clients> = {
     default: {
       exponentialTimeoutCoefficient: 2,
       exponentialBackoffCoefficient: 2,
-      initialBackoffDelay: 50,
-      retries: 2,
+      initialBackoffDelay: 100,
+      retries: 10,
       timeout: TIMEOUT_MS,
       concurrency: CONCURRENCY,
-    },
-    status: {
       memoryCache,
     },
   },

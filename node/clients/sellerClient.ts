@@ -13,9 +13,6 @@ export default class SellerClient extends ExternalClient {
         },
         headers: {
           ...options?.headers,
-          'Cache-Control': 'no-cache',
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
           VtexIdclientAutcookie: context.authToken ?? '',
         },
       }
@@ -23,6 +20,6 @@ export default class SellerClient extends ExternalClient {
   }
 
   public async getSeller(sellerId: string) {
-    return this.http.get(`/${sellerId}`)
+    return this.http.get(`/${sellerId}`, { forceMaxAge: 5000 })
   }
 }
