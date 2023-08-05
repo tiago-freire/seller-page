@@ -3,6 +3,7 @@
     "test": "vtex-test-tools test"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.32.5",
     "apollo-client": "^2.6.8",
     "jotai": "^2.2.1",
     "react": "^16.12.0",

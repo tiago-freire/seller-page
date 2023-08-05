@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React, { FC } from 'react'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -12,9 +13,9 @@ const SellerInfoSkeleton: FC = () => <Skeleton height="30vh" />
 
 const SellerInfo: FC = () => {
   const handles = useCssHandles(['title', ...Object.keys(styles)])
-  const { seller, error, loading } = useSellerFromSlug()
+  const { seller, error, isLoading } = useSellerFromSlug()
 
-  if (loading) {
+  if (isLoading) {
     return <SellerInfoSkeleton />
   }
 
@@ -46,7 +47,7 @@ const SellerInfo: FC = () => {
   return (
     <section className={`bg-muted-5 pv6 ph8 br3 ${handles.infoContainer}`}>
       <div className="flex flex-column items-center items-start-l flex-row-l">
-        {error ?? (
+        {error?.message ?? (
           <>
             <div className={logoContainerClasses}>
               {logo ? (
@@ -67,4 +68,16 @@ const SellerInfo: FC = () => {
   )
 }
 
-export default SellerInfo
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { refetchOnWindowFocus: false } },
+})
+
+const SellerInfoWithQueryClient: FC = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <SellerInfo />
+    </QueryClientProvider>
+  )
+}
+
+export default SellerInfoWithQueryClient

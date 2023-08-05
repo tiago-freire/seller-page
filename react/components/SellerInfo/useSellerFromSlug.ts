@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import { useRuntime } from 'vtex.render-runtime'
 
 interface Seller {
@@ -13,8 +13,11 @@ interface Seller {
 
 interface ApiResponse {
   seller?: Seller
+  message?: string
   error?: string
 }
+
+const MAX_RETRIES = 10
 
 const useSellerFromSlug = () => {
   const {
@@ -24,64 +27,28 @@ const useSellerFromSlug = () => {
     },
   } = useRuntime()
 
-  const [seller, setSeller] = useState<Seller>()
-  const [error, setError] = useState<string>()
-  const [loading, setLoading] = useState(true)
+  const { data: seller, isLoading, error } = useQuery<
+    Seller | undefined,
+    Error
+  >({
+    queryKey: ['seller', slug],
+    queryFn: async () => {
+      const response = await fetch(`/_v/seller/${slug}?workspace=${workspace}`)
 
-  const fetchSeller = useCallback(async () => {
-    const maxRetries = 3
-    const retryInterval = 300
+      const json: ApiResponse = await response.json()
 
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `/_v/seller/${slug}?workspace=${workspace}`
+      if (!response.ok) {
+        throw new Error(
+          json?.message ?? json?.error ?? response.status.toString()
         )
-
-        if (!response.ok) {
-          const json = await response.json()
-
-          throw new Error(json?.message || response.status.toString())
-        }
-
-        const json: ApiResponse = await response.json()
-
-        setError(json?.error)
-        setSeller(json?.seller)
-        setLoading(false)
-
-        return
-      } catch (e) {
-        throw e
       }
-    }
 
-    let retryCount = 0
+      return json?.seller
+    },
+    retry: MAX_RETRIES,
+  })
 
-    while (retryCount < maxRetries) {
-      try {
-        // eslint-disable-next-line no-await-in-loop
-        await fetchData()
-
-        return
-      } catch (e) {
-        retryCount++
-        if (retryCount < maxRetries) {
-          // eslint-disable-next-line no-await-in-loop
-          await new Promise((resolve) => setTimeout(resolve, retryInterval))
-        } else {
-          setError(e.message)
-          setLoading(false)
-        }
-      }
-    }
-  }, [slug, workspace])
-
-  useEffect(() => {
-    fetchSeller()
-  }, [fetchSeller])
-
-  return { seller, error, loading }
+  return { seller, isLoading, error }
 }
 
 export default useSellerFromSlug

@@ -1,4 +1,4 @@
-import React, { Children, FC, useState } from 'react'
+import React, { Children, FC, Fragment, useState } from 'react'
 import { defineMessages, useIntl } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -48,7 +48,7 @@ const Description: FC<{ sellerName?: string; description?: string }> = ({
       {descriptionToRender.length ? (
         <>
           {descriptionToRender.map((p, index) => (
-            <>
+            <Fragment key={`description-${sellerName}-${index}`}>
               {p}
               {index < descriptionToRender.length - 1 && (
                 <>
@@ -56,7 +56,7 @@ const Description: FC<{ sellerName?: string; description?: string }> = ({
                   <br />
                 </>
               )}
-            </>
+            </Fragment>
           ))}
           {!renderAll && (
             <button
