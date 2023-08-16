@@ -23,7 +23,6 @@ const SellerPageLink: FC<PropsWithChildren<never>> = ({ children }) => {
   return slug ? (
     <Link
       className={`c-link ${handles.sellerLink}`}
-      target="_blank"
       params={{ slug }}
       title={currentSeller?.sellerName}
       page="store.seller"

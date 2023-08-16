@@ -16,10 +16,9 @@ const messages = defineMessages({
   },
 })
 
-const Description: FC<{ sellerName?: string; description?: string }> = ({
-  sellerName,
-  description,
-}) => {
+type Props = { sellerName?: string; description?: string }
+
+const Description: FC<Props> = ({ sellerName, description }) => {
   const intl = useIntl()
   const handles = useCssHandles(['description'])
   const [openMore, setOpenMore] = useState(false)

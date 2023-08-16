@@ -7,19 +7,15 @@ export default class SellerClient extends ExternalClient {
       context,
       {
         ...options,
-        params: {
-          ...options?.params,
-          workspace: context.workspace,
-        },
         headers: {
           ...options?.headers,
-          VtexIdclientAutcookie: context.authToken ?? '',
+          VtexIdclientAutcookie: context.authToken,
         },
       }
     )
   }
 
   public async getSeller(sellerId: string) {
-    return this.http.get(`/${sellerId}`, { forceMaxAge: 5000 })
+    return this.http.get(`/${sellerId}`)
   }
 }

@@ -1,4 +1,4 @@
-import type { ClientsConfig } from '@vtex/api'
+import type { Cached, ClientsConfig } from '@vtex/api'
 import { LRUCache, Service, method } from '@vtex/api'
 
 import { Clients } from './clients'
@@ -6,8 +6,7 @@ import getSeller from './middlewares/getSeller'
 
 const TIMEOUT_MS = 4 * 1000
 const CONCURRENCY = 10
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const memoryCache = new LRUCache<string, any>({ max: 5000 })
+const memoryCache = new LRUCache<string, Cached>({ max: 5000 })
 
 const clients: ClientsConfig<Clients> = {
   implementation: Clients,
@@ -16,7 +15,7 @@ const clients: ClientsConfig<Clients> = {
       exponentialTimeoutCoefficient: 2,
       exponentialBackoffCoefficient: 2,
       initialBackoffDelay: 100,
-      retries: 10,
+      retries: 3,
       timeout: TIMEOUT_MS,
       concurrency: CONCURRENCY,
       memoryCache,

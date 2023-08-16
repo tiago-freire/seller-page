@@ -2,21 +2,29 @@ import React, { FC } from 'react'
 import { ExtensionPoint, useRuntime } from 'vtex.render-runtime'
 import ProductQuery from 'vtex.search-result/SearchResultLayoutCustomQuery'
 
+import { withQueryClient } from '../../helpers'
+import { useSeller, useSellerAddons } from '../../services'
+
 const SellerProducts: FC = () => {
-  const {
-    query,
-    route: {
-      params: { slug },
-    },
-  } = useRuntime()
+  const { query } = useRuntime()
+  const { seller } = useSeller()
+  const { sellerAddons } = useSellerAddons()
+
+  const addonsOrderBy = sellerAddons?.orderByField
+  const orderByField =
+    query?.order ?? (addonsOrderBy === 'OrderByScoreDESC' ? '' : addonsOrderBy)
+
+  if (!seller?.id) {
+    return null
+  }
 
   return (
     <ProductQuery
       querySchema={{
         ...query,
         mapField: 'seller',
-        queryField: slug,
-        orderByField: query?.order,
+        queryField: seller.id,
+        orderByField,
         priceRangeField: query?.priceRange,
       }}
     >
@@ -27,4 +35,4 @@ const SellerProducts: FC = () => {
   )
 }
 
-export default SellerProducts
+export default withQueryClient(SellerProducts)

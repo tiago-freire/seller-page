@@ -3,6 +3,8 @@ import { defineMessages, useIntl } from 'react-intl'
 import ReactMarkdown from 'react-markdown'
 import { Modal } from 'vtex.styleguide'
 
+import { CustomMarkdownLink } from '../../helpers'
+
 const messages = defineMessages({
   deliveryPolicyTitle: { id: 'store/seller-page-deliveryPolicyTitle' },
   exchangeReturnPolicyTitle: {
@@ -54,7 +56,9 @@ const PoliciesButtons: FC<Props> = ({
             onClose={() => setOpenDeliveryPolicy(false)}
             title={intl.formatMessage(messages.deliveryPolicyTitle)}
           >
-            <ReactMarkdown>{deliveryPolicy}</ReactMarkdown>
+            <ReactMarkdown components={{ a: CustomMarkdownLink }}>
+              {deliveryPolicy}
+            </ReactMarkdown>
           </Modal>
         </>
       )}
@@ -73,7 +77,9 @@ const PoliciesButtons: FC<Props> = ({
             onClose={() => setOpenExchangePolicy(false)}
             title={intl.formatMessage(messages.exchangeReturnPolicyTitle)}
           >
-            <ReactMarkdown>{exchangeReturnPolicy}</ReactMarkdown>
+            <ReactMarkdown components={{ a: CustomMarkdownLink }}>
+              {exchangeReturnPolicy}
+            </ReactMarkdown>
           </Modal>
         </>
       )}
@@ -92,7 +98,9 @@ const PoliciesButtons: FC<Props> = ({
             onClose={() => setOpenSecurityPolicy(false)}
             title={intl.formatMessage(messages.securityPrivacyPolicyTitle)}
           >
-            <ReactMarkdown>{securityPrivacyPolicy}</ReactMarkdown>
+            <ReactMarkdown components={{ a: CustomMarkdownLink }}>
+              {securityPrivacyPolicy}
+            </ReactMarkdown>
           </Modal>
         </>
       )}

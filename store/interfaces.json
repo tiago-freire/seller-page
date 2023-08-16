@@ -24,5 +24,8 @@
   },
   "seller-product-price": {
     "component": "SellerProductPrice"
+  },
+  "seller-banner": {
+    "component": "SellerBanner"
   }
 }

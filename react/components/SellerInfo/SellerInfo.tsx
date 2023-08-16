@@ -1,21 +1,22 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React, { FC } from 'react'
 import { useCssHandles } from 'vtex.css-handles'
 
+import { withQueryClient } from '../../helpers'
+import { useSeller, useSellerAddons } from '../../services'
 import Skeleton from '../Skeleton'
 import DefaultLogo from './DefaultLogo'
 import Description from './Description'
 import PoliciesButtons from './PoliciesButtons'
 import styles from './styles.css'
-import useSellerFromSlug from './useSellerFromSlug'
 
 const SellerInfoSkeleton: FC = () => <Skeleton height="30vh" />
 
 const SellerInfo: FC = () => {
   const handles = useCssHandles(['title', ...Object.keys(styles)])
-  const { seller, error, isLoading } = useSellerFromSlug()
+  const { seller, error, isLoading: isSellerLoading } = useSeller()
+  const { sellerAddons, isLoading: isSellerAddonsLoading } = useSellerAddons()
 
-  if (isLoading) {
+  if (isSellerLoading || isSellerAddonsLoading) {
     return <SellerInfoSkeleton />
   }
 
@@ -39,9 +40,11 @@ const SellerInfo: FC = () => {
   const policiesButtonsProps = {
     handles,
     className: 'flex flex-column flex-row-m mt4',
-    deliveryPolicy,
-    exchangeReturnPolicy,
-    securityPrivacyPolicy,
+    deliveryPolicy: deliveryPolicy ?? sellerAddons?.deliveryPolicy,
+    exchangeReturnPolicy:
+      exchangeReturnPolicy ?? sellerAddons?.exchangeReturnPolicy,
+    securityPrivacyPolicy:
+      securityPrivacyPolicy ?? sellerAddons?.securityPrivacyPolicy,
   }
 
   return (
@@ -58,7 +61,10 @@ const SellerInfo: FC = () => {
             </div>
             <div className={titleAndDescriptionClasses}>
               <h3 className={titleClasses}>{name}</h3>
-              <Description description={description} sellerName={name} />
+              <Description
+                description={description ?? sellerAddons?.description}
+                sellerName={name}
+              />
               <PoliciesButtons {...policiesButtonsProps} />
             </div>
           </>
@@ -68,16 +74,4 @@ const SellerInfo: FC = () => {
   )
 }
 
-const queryClient = new QueryClient({
-  defaultOptions: { queries: { refetchOnWindowFocus: false } },
-})
-
-const SellerInfoWithQueryClient: FC = () => {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <SellerInfo />
-    </QueryClientProvider>
-  )
-}
-
-export default SellerInfoWithQueryClient
+export default withQueryClient(SellerInfo)
