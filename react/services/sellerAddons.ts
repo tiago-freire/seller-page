@@ -6,6 +6,7 @@ import { ApiResponse, apiGetFactory } from '.'
 interface SellerAddonsResponse extends ApiResponse {
   id?: string
   banner?: string
+  bannerMobile?: string
   bannerUrl?: string
   orderByField?: string
   description?: string

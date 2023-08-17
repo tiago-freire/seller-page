@@ -23,7 +23,8 @@
     "vtex.rich-text": "0.x",
     "vtex.search-result": "3.x",
     "vtex.seller-selector": "0.x",
-    "vtex.styleguide": "9.x"
+    "vtex.styleguide": "9.x",
+    "vtex.device-detector": "0.x"
   },
   "scripts": {
     "postreleasy": "vtex publish"

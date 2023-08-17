@@ -1,5 +1,6 @@
 import React, { FC, PropsWithChildren } from 'react'
 import { useCssHandles } from 'vtex.css-handles'
+import { useDevice } from 'vtex.device-detector'
 import { Link } from 'vtex.render-runtime'
 
 import { withQueryClient } from '../../helpers'
@@ -16,16 +17,30 @@ const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
 }
 
 const SellerBanner: FC = () => {
+  const { isMobile } = useDevice()
   const handles = useCssHandles(['bannerImage', 'bannerLink'])
   const { sellerAddons, error } = useSellerAddons()
 
-  const bannerUrl = sellerAddons?.bannerUrl
-  const banner = sellerAddons?.banner
-  const imageBanner = banner && (
-    <img className={handles.bannerImage} src={banner} alt="Seller Banner" />
-  )
-
   if (error) return null
+
+  const banner = sellerAddons?.banner ?? ''
+  const bannerMobile = sellerAddons?.bannerMobile ?? ''
+  const imageAlt = 'Seller Banner'
+
+  const imageBanner =
+    (banner || bannerMobile) && isMobile ? (
+      <img
+        className={handles.bannerImage}
+        src={bannerMobile || banner}
+        alt={imageAlt}
+      />
+    ) : (
+      banner && (
+        <img className={handles.bannerImage} src={banner} alt={imageAlt} />
+      )
+    )
+
+  const bannerUrl = sellerAddons?.bannerUrl
 
   if (bannerUrl && imageBanner) {
     return (

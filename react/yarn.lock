@@ -5362,10 +5362,6 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==
 
-"ssesandbox04.seller-page@https://dev--vtextitantools.myvtex.com/_v/private/typings/linked/v1/ssesandbox04.seller-page@0.0.9+build1690222848/public/@types/ssesandbox04.seller-page":
-  version "0.0.0"
-  resolved "https://dev--vtextitantools.myvtex.com/_v/private/typings/linked/v1/ssesandbox04.seller-page@0.0.9+build1690222848/public/@types/ssesandbox04.seller-page#f1aeeeda55eae76277938b30aee02cc68843b6c2"
-
 sshpk@^1.7.0:
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.17.0.tgz#578082d92d4fe612b13007496e543fa0fbcbe4c5"
@@ -5862,13 +5858,13 @@ vfile@^5.0.0:
     unist-util-stringify-position "^3.0.0"
     vfile-message "^3.0.0"
 
-"vtex.add-to-cart-button@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.add-to-cart-button@0.30.2/public/@types/vtex.add-to-cart-button":
-  version "0.30.2"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.add-to-cart-button@0.30.2/public/@types/vtex.add-to-cart-button#460e38a0fca759d2eba382ebe6cd92d6c645b0b6"
-
 "vtex.css-handles@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles":
   version "0.4.4"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles#8c45c6decf9acd2b944e07261686decff93d6422"
+
+"vtex.device-detector@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.device-detector@0.2.6/public/@types/vtex.device-detector":
+  version "0.2.6"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.device-detector@0.2.6/public/@types/vtex.device-detector#3219242fa5c2f14023d33c3549c2d8de93c76d1f"
 
 "vtex.flex-layout@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.flex-layout@0.21.3/public/@types/vtex.flex-layout":
   version "0.21.3"
@@ -5882,17 +5878,13 @@ vfile@^5.0.0:
   version "0.10.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.10.0/public/@types/vtex.product-context#c5e2a97b404004681ee12f4fff7e6b62157786cc"
 
-"vtex.product-price@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-price@1.31.0/public/@types/vtex.product-price":
-  version "1.31.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-price@1.31.0/public/@types/vtex.product-price#d3b0672704ea7ed104d86edbef282708381d5347"
-
 "vtex.product-summary@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-summary@2.83.1/public/@types/vtex.product-summary":
   version "2.83.1"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-summary@2.83.1/public/@types/vtex.product-summary#5c8cdaaca7648462cad2fddc6742696fca57dcc8"
 
-"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.133.2/public/@types/vtex.render-runtime":
-  version "8.133.2"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.133.2/public/@types/vtex.render-runtime#6fc9c79c52f292c67f583e96d66a56b7b61eabd1"
+"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.134.0/public/@types/vtex.render-runtime":
+  version "8.134.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.134.0/public/@types/vtex.render-runtime#ee5a73993a75e45de60ccceac1ef74ab6b9202a3"
 
 "vtex.rich-text@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.rich-text@0.16.0/public/@types/vtex.rich-text":
   version "0.16.0"
@@ -5901,10 +5893,6 @@ vfile@^5.0.0:
 "vtex.search-result@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.search-result@3.124.0/public/@types/vtex.search-result":
   version "3.124.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.search-result@3.124.0/public/@types/vtex.search-result#619e1f68a8db0ce20b68156f75bb821b44401000"
-
-"vtex.seller-selector@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.seller-selector@0.5.0/public/@types/vtex.seller-selector":
-  version "0.5.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.seller-selector@0.5.0/public/@types/vtex.seller-selector#edcb49cc9b5bccc75fc84508882ba2025b7c8f13"
 
 "vtex.store@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store@2.131.1/public/@types/vtex.store":
   version "2.131.1"
