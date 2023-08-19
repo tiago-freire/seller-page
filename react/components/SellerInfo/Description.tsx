@@ -16,6 +16,9 @@ const messages = defineMessages({
   },
 })
 
+const MAX_CHARS = 400
+const MAX_PARAGRAPHS = 1
+
 type Props = { sellerName?: string; description?: string }
 
 const Description: FC<Props> = ({ sellerName, description }) => {
@@ -24,20 +27,21 @@ const Description: FC<Props> = ({ sellerName, description }) => {
   const [openMore, setOpenMore] = useState(false)
 
   const descriptionParagraphs = Children.toArray(
-    convertBreakToBrHTML(description ?? '', 'description')
+    convertBreakToBrHTML(
+      description?.substring(0, openMore ? undefined : MAX_CHARS) ?? '',
+      'description'
+    )
   )
 
-  const descriptionNotMaxLength = (description?.length ?? 0) <= 800
+  const descriptionNotMaxLength = (description?.length ?? 0) <= MAX_CHARS
 
   const renderAll: boolean =
-    descriptionNotMaxLength && descriptionParagraphs.length < 3
+    descriptionNotMaxLength && descriptionParagraphs.length < MAX_PARAGRAPHS + 1
 
   const descriptionToRender =
     renderAll || openMore
       ? descriptionParagraphs
-      : descriptionParagraphs.length === 1 && !descriptionNotMaxLength
-      ? [description?.substring(0, 800) ?? '']
-      : descriptionParagraphs.slice(0, 2)
+      : descriptionParagraphs.slice(0, MAX_PARAGRAPHS)
 
   const showMoreButtonClasses =
     'b--none bg-transparent c-on-action-secondary t-action hover-bg-muted-4 lh-solid ml3 ph0 pointer pv0 underline'

@@ -17,12 +17,14 @@ interface SellerAddonsResponse extends ApiResponse {
 
 export const useSellerAddons = () => {
   const {
+    account,
     route: {
       params: { slug },
     },
   } = useRuntime()
 
-  const endpoint = `https://${slug}.myvtex.com/_v/get-addons`
+  const baseEndpoint = slug === '1' ? account : slug
+  const endpoint = `https://${baseEndpoint}.myvtex.com/_v/get-addons`
 
   const { data: sellerAddons, isLoading, error } = useQuery<
     SellerAddonsResponse | undefined,

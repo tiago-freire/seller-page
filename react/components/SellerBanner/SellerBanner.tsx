@@ -25,20 +25,17 @@ const SellerBanner: FC = () => {
 
   const banner = sellerAddons?.banner ?? ''
   const bannerMobile = sellerAddons?.bannerMobile ?? ''
-  const imageAlt = 'Seller Banner'
+  const imgAlt = 'Seller Banner'
+  const imgClasses = `br3 ${handles.bannerImage}`
 
   const imageBanner =
-    (banner || bannerMobile) && isMobile ? (
-      <img
-        className={handles.bannerImage}
-        src={bannerMobile || banner}
-        alt={imageAlt}
-      />
-    ) : (
-      banner && (
-        <img className={handles.bannerImage} src={banner} alt={imageAlt} />
+    banner || bannerMobile ? (
+      isMobile ? (
+        <img className={imgClasses} src={bannerMobile || banner} alt={imgAlt} />
+      ) : (
+        banner && <img className={imgClasses} src={banner} alt={imgAlt} />
       )
-    )
+    ) : null
 
   const bannerUrl = sellerAddons?.bannerUrl
 
