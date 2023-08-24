@@ -1,5 +1,6 @@
 .infoContainer {
   --logo-width: 150px;
+  --reviews-badge-bg: #faf7ab;
 }
 
 .logoContainer {
@@ -16,4 +17,9 @@
 
 .policyButton {
   border-width: 1px;
+}
+
+.reviewsBadge {
+  width: fit-content;
+  background-color: var(--reviews-badge-bg);
 }

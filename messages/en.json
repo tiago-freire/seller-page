@@ -6,6 +6,15 @@
   "store/seller-page-deliveryPolicyTitle": "Shipping Policy",
   "store/seller-page-exchangeReturnPolicyTitle": "Exchanges and Returns",
   "store/seller-page-securityPrivacyPolicyTitle": "Privacy and Security",
+  "store/seller-page-reviewsLabel": "reviews",
+  "store/seller-page-reviewsLabelSingular": "review",
+  "store/seller-page-reviewsTitle": "Last Reviews",
+  "store/seller-page-noReviews": "No reviews",
+  "store/seller-page-typeReviewLabel": "Type your review",
+  "store/seller-page-reviewSentMessage": "Your review was sent and will be moderated",
+  "store/seller-page-characterCountdownText": "characters left",
+  "store/seller-page-sendLabel": "Send",
+  "store/seller-page-cancelLabel": "Cancel",
   "store/seller-page-listPricePrefix": "From",
   "store/seller-page-sellingPricePrefix": "Now"
 }

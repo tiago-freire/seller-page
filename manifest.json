@@ -29,7 +29,9 @@
   "scripts": {
     "postreleasy": "vtex publish"
   },
-  "registries": ["smartcheckout"],
+  "registries": [
+    "smartcheckout"
+  ],
   "credentialType": "absolute",
   "policies": [
     {
@@ -100,7 +102,9 @@
   ],
   "billingOptions": {
     "type": "free",
-    "availableCountries": ["*"]
+    "availableCountries": [
+      "*"
+    ]
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
