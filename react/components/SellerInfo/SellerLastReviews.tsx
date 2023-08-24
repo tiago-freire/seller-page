@@ -58,9 +58,10 @@ const SellerLastReviews: FC = () => {
         <div className="mt4">
           <Textarea
             value={review}
-            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
               setReview(e.target.value)
-            }
+              setSent(false)
+            }}
             label={intl.formatMessage(messages.typeReviewLabel)}
             maxLength="250"
             characterCountdownText={intl.formatMessage(messages.countdownText)}
