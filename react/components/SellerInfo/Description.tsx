@@ -67,7 +67,9 @@ const Description: FC<Props> = ({ sellerName, description }) => {
               onKeyUp={() => setOpenMore((prevOpen) => !prevOpen)}
               onClick={() => setOpenMore((prevOpen) => !prevOpen)}
             >
-              {openMore ? 'less' : 'more'}
+              {openMore
+                ? intl.formatMessage(messages.lessDescription)
+                : intl.formatMessage(messages.moreDescription)}
             </button>
           )}
         </>
