@@ -1,7 +1,7 @@
 {
   "vendor": "ssesandbox04",
   "name": "seller-page",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "title": "Seller Page",
   "description": "Provides a custom seller page",
   "builders": {
